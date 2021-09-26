@@ -68,7 +68,7 @@ public class JokeServer {
         // async spin off admin listener on the admin port
         // AdminListern is in charge of setting mode and uses mode argument to change
         // mode
-        AdminListener adminListener = new AdminListener(adminPort, q_len, mode);
+        AdminListener adminListener = new AdminListener(adminPort, q_len, mode, isSecondaryServer);
         Thread adminThread = new Thread(adminListener);
         adminThread.start();
 
@@ -124,11 +124,13 @@ class AdminListener implements Runnable {
     int adminPort;
     int q_len;
     ModeTracker mode;
+    boolean isSecondaryServer;
 
-    AdminListener(int adminPortParam, int q_lenParam, ModeTracker modeParam) {
+    AdminListener(int adminPortParam, int q_lenParam, ModeTracker modeParam, boolean isSecondaryServerParam) {
         adminPort = adminPortParam;
         q_len = q_lenParam;
         mode = modeParam;
+        isSecondaryServer = isSecondaryServerParam;
     }
 
     public void run() {
@@ -138,7 +140,7 @@ class AdminListener implements Runnable {
             // listen on the admin port, change mode on request recieved
             while (true) {
                 adminSock = adminServSock.accept();
-                new AdminWorker(adminSock, mode).start();
+                new AdminWorker(adminSock, mode, isSecondaryServer).start();
             }
         } catch (IOException x) {
             System.out.println(x);
@@ -154,10 +156,12 @@ class AdminListener implements Runnable {
 class AdminWorker extends Thread {
     Socket adminSocket;
     ModeTracker mode;
+    boolean isSecondaryServer;
 
-    AdminWorker(Socket adminSocketParam, ModeTracker modeParam) {
+    AdminWorker(Socket adminSocketParam, ModeTracker modeParam, boolean isSecondaryServerParam) {
         adminSocket = adminSocketParam;
         mode = modeParam;
+        isSecondaryServer = isSecondaryServerParam;
     }
 
     public void run() {
@@ -173,7 +177,11 @@ class AdminWorker extends Thread {
             } else {
                 changedMode = "Proverb";
             }
-            adminOut.println("Changed mode to: " + changedMode);
+            if (isSecondaryServer) {
+                adminOut.println("<S2> Changed mode to: " + changedMode);
+            } else {
+                adminOut.println("Changed mode to: " + changedMode);
+            }
 
             adminSocket.close();
         } catch (IOException x) {

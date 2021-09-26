@@ -18,6 +18,10 @@ Change admin to secondary server
 Change secondary server to proberb
 2 proverb requests
 
+Note:
+I updated change mode output for secondary server to include <S2> tag.
+Manually updated relevant admin log instead of going through workflow again.
+
 Output:
 
 JokeServer:
@@ -168,6 +172,6 @@ Now communnicating with: localhost port: 5051
 Press enter to toggle joke/proverb
 Enter "s" to toggle used server
 
-Changed mode to: Proverb
+<S2> Changed mode to: Proverb
 Press enter to toggle joke/proverb
 Enter "s" to toggle used server
