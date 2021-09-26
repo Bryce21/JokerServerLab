@@ -1,0 +1,173 @@
+Run commands:
+JokeServer: java JokeServer.java
+Secondary JokeServer: java JokeServer.java secondary
+JokeClient: java JokeClient.java localhost localhost
+java JokeClientAdmin.java localhost localhost
+
+Workflow:
+6 joke requests
+Change proverb (admin)
+6 proverb requests
+Change joke (admin)
+Finish joke cycle (2 jokes)
+Change proverb (admin)
+Finish proverb cycle (2 proverb)
+Change client to secondary JokeServer
+2 joke requests
+Change admin to secondary server
+Change secondary server to proberb
+2 proverb requests
+
+Output:
+
+JokeServer:
+B. Reinhard's Joke server starting up, port: 4545, admin port: 5050
+
+JD Bryce: joke4
+JC Bryce: joke3
+JB Bryce: joke2
+JA Bryce: joke1
+JOKE CYCLE COMPLETED.
+JD Bryce: joke4
+JC Bryce: joke3
+Changed to proverb mode
+PD Bryce: proverb4
+PA Bryce: proverb1
+PC Bryce: proverb3
+PB Bryce: proverb2
+PROVERB CYCLE COMPLETED.
+PC Bryce: proverb3
+PB Bryce: proverb2
+Changed to joke mode
+JA Bryce: joke1
+JB Bryce: joke2
+Changed to proverb mode
+PA Bryce: proverb1
+PD Bryce: proverb4
+
+Secondary JokeServer:
+B. Reinhard's Joke server starting up, port: 4546, admin port: 5051
+
+<S2> JA Bryce: joke1
+<S2> JD Bryce: joke4
+Changed to proverb mode
+<S2> PD Bryce: proverb4
+<S2> PC Bryce: proverb3
+
+JokeClient:
+Server one: localhost, port: 4545
+Server two: localhost, port: 4546
+Enter name:
+Bryce
+Press enter to get response
+Enter "s" to toggle used server
+
+JD Bryce: joke4
+Press enter to get response
+Enter "s" to toggle used server
+
+JC Bryce: joke3
+Press enter to get response
+Enter "s" to toggle used server
+
+JB Bryce: joke2
+Press enter to get response
+Enter "s" to toggle used server
+
+JA Bryce: joke1
+Press enter to get response
+Enter "s" to toggle used server
+
+JD Bryce: joke4
+Press enter to get response
+Enter "s" to toggle used server
+
+JC Bryce: joke3
+Press enter to get response
+Enter "s" to toggle used server
+
+PD Bryce: proverb4
+Press enter to get response
+Enter "s" to toggle used server
+
+PA Bryce: proverb1
+Press enter to get response
+Enter "s" to toggle used server
+
+PC Bryce: proverb3
+Press enter to get response
+Enter "s" to toggle used server
+
+PB Bryce: proverb2
+Press enter to get response
+Enter "s" to toggle used server
+
+PC Bryce: proverb3
+Press enter to get response
+Enter "s" to toggle used server
+
+PB Bryce: proverb2
+Press enter to get response
+Enter "s" to toggle used server
+
+JA Bryce: joke1
+Press enter to get response
+Enter "s" to toggle used server
+
+JB Bryce: joke2
+Press enter to get response
+Enter "s" to toggle used server
+
+PA Bryce: proverb1
+Press enter to get response
+Enter "s" to toggle used server
+
+PD Bryce: proverb4
+Press enter to get response
+Enter "s" to toggle used server
+s
+Now communnicating with: localhost port: 4546
+Press enter to get response
+Enter "s" to toggle used server
+
+<S2> JA Bryce: joke1
+Press enter to get response
+Enter "s" to toggle used server
+
+<S2> JD Bryce: joke4
+Press enter to get response
+Enter "s" to toggle used server
+
+<S2> PD Bryce: proverb4
+Press enter to get response
+Enter "s" to toggle used server
+
+<S2> PC Bryce: proverb3
+Press enter to get response
+Enter "s" to toggle used server
+
+JokeAdmin:
+Server one: localhost, port: 5050
+Server two: localhost, port: 5051
+Press enter to toggle joke/proverb
+Enter "s" to toggle used server
+
+Changed mode to: Proverb
+Press enter to toggle joke/proverb
+Enter "s" to toggle used server
+
+Changed mode to: Joke
+Press enter to toggle joke/proverb
+Enter "s" to toggle used server
+
+Changed mode to: Proverb
+Press enter to toggle joke/proverb
+Enter "s" to toggle used server
+s
+Now communnicating with: localhost port: 5051
+Press enter to toggle joke/proverb
+Enter "s" to toggle used server
+
+Changed mode to: Proverb
+Press enter to toggle joke/proverb
+Enter "s" to toggle used server
